@@ -42,13 +42,14 @@ function clueMessages() {
   }
 }
 
-//Función para comprobar que el número que introduce está entre 1 y 100
+//Función para comprobar que el número que introduce está entre 1 y 100.
+//Al probar el juego si solo la llamamos cuando el juego inicia, si la usuaria pone un número que no está entre 1 y 100 no le avisa y puede seguir metiendo números que no estén en este rango. Si la vuelvo a llamar después sí funciona pero no sé si esto es correcto.
 
 function checkCorrectNumber() {
   const getNumber = putNumber.value;
   const transformToNumber = parseInt(getNumber);
   if (transformToNumber < 1 || transformToNumber > 100) {
-    clue.innerHTML = "El número debe estar entre 1 y 100";
+    clue.innerHTML = " ❌ El número debe estar entre 1 y 100";
   }
 }
 
@@ -58,9 +59,12 @@ function numberAttemps() {
   attemps.innerHTML = `Número de intentos: ${count}`;
 }
 
+//Función manejadora del evento
+
 function handleInput() {
   checkCorrectNumber();
   clueMessages();
+  checkCorrectNumber();
   numberAttemps();
 }
 

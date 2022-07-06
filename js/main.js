@@ -24,37 +24,17 @@ IMPORTANTE: lo que escriba la usuaria es un string, pasarlo a número con parseI
 */
 
 //Función para conseguir el número que pinta la usuaria
-// function getUserNumber() {
-//   const getNumber = putNumber.value;
-//   const transformToNumber = parseInt(getNumber);
-//   console.log(transformToNumber);
-//   console.log(typeof transformToNumber);
-
-//   const randomNumber = getRandomNumber(100);
-
-//   if (transformToNumber === randomNumber) {
-//     console.log("Has ganado campeona!!!");
-//   }
-// }
-
-// function conditional (){
-
-// }
 
 function handleInput() {
   const getNumber = putNumber.value;
   const transformToNumber = parseInt(getNumber);
-  console.log(transformToNumber);
-  console.log(typeof transformToNumber);
-
-  //const randomNumber = getRandomNumber(100);
 
   if (transformToNumber === randomNumber) {
-    console.log("Has ganado campeona!!!");
+    clue.innerHTML = "Has ganado campeona!!!";
   } else if (transformToNumber < randomNumber) {
-    console.log("Demasiado bajo");
+    clue.innerHTML = "Demasiado bajo";
   } else if (transformToNumber > randomNumber) {
-    console.log("Demasiado alto");
+    clue.innerHTML = "Demasiado alto";
   }
 }
 

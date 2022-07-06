@@ -34,11 +34,11 @@ function clueMessages() {
   const getNumber = putNumber.value;
   const transformToNumber = parseInt(getNumber);
   if (transformToNumber === randomNumber) {
-    clue.innerHTML = "Has ganado campeona!!!";
+    clue.innerHTML = "¡¡¡Enhorabuena has ganado campeona!!! 🏆🥇";
   } else if (transformToNumber < randomNumber) {
-    clue.innerHTML = "Demasiado bajo";
+    clue.innerHTML = "Demasiado bajo ⬇";
   } else if (transformToNumber > randomNumber) {
-    clue.innerHTML = "Demasiado alto";
+    clue.innerHTML = "Demasiado alto ⬆";
   }
 }
 

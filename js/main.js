@@ -1,11 +1,12 @@
-"use strict";
+'use strict';
+
 //Variables
 //Variables para traer los elementos de html a JS
 
-const putNumber = document.querySelector(".js_putNumber");
-const tryBtn = document.querySelector(".js_tryBtn");
-const clue = document.querySelector(".js_clue");
-const attemps = document.querySelector(".js_attemps");
+const putNumber = document.querySelector('.js_putNumber');
+const tryBtn = document.querySelector('.js_tryBtn');
+const getClue = document.querySelector('.js_clue');
+const getAttemps = document.querySelector('.js_attemps');
 
 //Variable para el número aleatorio
 
@@ -28,46 +29,43 @@ IMPORTANTE: lo que escriba la usuaria es un string, pasarlo a número con parseI
 3-Poner el contador del número de intentos
 */
 
-//Función para conseguir el número que pinta la usuaria y darle pistas si no adivina el número al primer intento
+//Función para poner los mensajes que ve la usuaria
 
-function clueMessages() {
-  const getNumber = putNumber.value;
-  const transformToNumber = parseInt(getNumber);
-  if (transformToNumber === randomNumber) {
-    clue.innerHTML = "¡¡¡Enhorabuena has ganado campeona!!! 🏆🥇";
-  } else if (transformToNumber < randomNumber) {
-    clue.innerHTML = "Demasiado bajo ⬇";
-  } else if (transformToNumber > randomNumber) {
-    clue.innerHTML = "Demasiado alto ⬆";
-  }
+function giveMesagge(message) {
+  getClue.innerHTML = message;
 }
 
-//Función para comprobar que el número que introduce está entre 1 y 100.
-//Al probar el juego si solo la llamamos cuando el juego inicia, si la usuaria pone un número que no está entre 1 y 100 no le avisa y puede seguir metiendo números que no estén en este rango. Si la vuelvo a llamar después sí funciona pero no sé si esto es correcto.
+//Función para conseguir el número que pinta la usuaria comprobar que el número está en el rango y darle pistas si no adivina el número al primer intento
 
-function checkCorrectNumber() {
-  const getNumber = putNumber.value;
-  const transformToNumber = parseInt(getNumber);
-  if (transformToNumber < 1 || transformToNumber > 100) {
-    clue.innerHTML = " ❌ El número debe estar entre 1 y 100";
+function validateUserNumber() {
+  const getNumber = parseInt(putNumber.value);
+
+  if (isNaN(getNumber)) {
+    giveMesagge(' ❌ Escribe un número entre 1 y 100');
+  } else if (getNumber < 1 || getNumber > 100) {
+    giveMesagge(' ❌ El número debe estar entre 1 y 100');
+  } else if (getNumber < randomNumber) {
+    giveMesagge('Demasiado bajo ⬇');
+  } else if (getNumber > randomNumber) {
+    giveMesagge('Demasiado alto ⬆');
+  } else if (getNumber === randomNumber) {
+    giveMesagge('¡¡¡Enhorabuena, has ganado campeona!!! 🏆🥇');
   }
 }
 
 //Función para contar el número de intentos
-function numberAttemps() {
+function getNumberAttemps() {
   count++;
-  attemps.innerHTML = `Número de intentos: ${count}`;
+  getAttemps.innerHTML = `Número de intentos: ${count}`;
 }
 
 //Función manejadora del evento
 
-function handleInput() {
-  checkCorrectNumber();
-  clueMessages();
-  checkCorrectNumber();
-  numberAttemps();
+function handleClick() {
+  validateUserNumber();
+  getNumberAttemps();
 }
 
 //Añadir el evento click
 
-tryBtn.addEventListener("click", handleInput);
+tryBtn.addEventListener('click', handleClick);
